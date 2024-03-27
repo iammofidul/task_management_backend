@@ -4,13 +4,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const Task = require('./models/Task');
 const taskRoutes = require('./routes/taskRoutes');
+require('dotenv').config();
+
 
 // Middleware
 app.use(express.json());
 
 // Connect to MongoDB
-//mongodb+srv://infoflingo:3zAgNuRKGfGJAkDF@cluster0.juqjumg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-mongoose.connect('mongodb+srv://infoflingo:3zAgNuRKGfGJAkDF@cluster0.juqjumg.mongodb.net/', {
+const MONGODB_URI = process.env.MONGODB_URI;
+
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
